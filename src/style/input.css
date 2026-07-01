@@ -48,7 +48,8 @@
 @utility container{
     @apply mx-auto
 }
-body{
+
+#main{
     background-image: url(../../public/img/headerBgDesktop.webp);
     background-repeat: no-repeat;
     background-size: cover;

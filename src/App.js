@@ -2,7 +2,7 @@ import HeaderDesktop from "./components/HeaderDesktop";
 
 
 const App = () => {
-    return ( <div className=" mw-480">
+    return ( <div id="main"  className="min-h-screen mw-480 ]">
     <HeaderDesktop/>
     </div> );
 }
