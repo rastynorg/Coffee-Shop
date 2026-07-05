@@ -1,9 +1,10 @@
 import HeaderDesktop from "./components/HeaderDesktop";
+import ProductCart from "./components/ProductCart";
 
 
 const App = () => {
     return ( <div id="main"  className="min-h-screen mw-480 ]">
-    <HeaderDesktop/>
+    <ProductCart/>
     </div> );
 }
  
