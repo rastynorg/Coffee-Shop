@@ -6,7 +6,16 @@ const ProductCart = () => {
   const count = 1;
 
   return (
-    <div className="w-43 h-68.25 md:w-75 md:h-116.75 bg-white p-2 md:p-5 shadow-normal rounded-2xl">
+    <div className=" relative w-43 h-68.25 md:w-75 md:h-116.75 bg-white p-2 md:p-5 shadow-normal rounded-2xl">
+      {/* Discount Label */}
+      {discount && (
+        <>
+          <span className="inline-block text-center py-1 px-2.5 md:py-1.5 md:px-3.5 z-10 absolute top-2 right-2 md:top-6 md:right-6 text-white  bg-orange-300 w-10 h-5 md:w-13.5 md:h-7.5 rounded-full text-xs md:text-base font-Dana-DemiBold">
+            <span>12</span>%
+          </span>
+        </>
+      )}
+      {/* Cart Image */}
       <div className="flex justify-center items-center">
         <img
           className="size-32 md:size-65  mb-2 md:mb-5"
@@ -14,10 +23,13 @@ const ProductCart = () => {
           alt=""
         />
       </div>
+      {/* title & price */}
       <div className=" space-y-1.5 md:space-y-2.5">
+        {/* title */}
         <h4 className=" font-Dana-Medium md:text-xl text-sm text-zinc-700 line-clamp-2 ">
           قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی
         </h4>
+        {/* Price */}
         <div>
           {count === 0 ? (
             <h4 className="text-red-400 text-xl font-Dana-Regular">
@@ -43,19 +55,23 @@ const ProductCart = () => {
           )}
         </div>
       </div>
+      {/* Icons */}
       <div className=" pt-2.5 md:pt-4 flex items-center justify-between">
         <div className="flex items-center gap-x-3  ">
+          {/* Shopping Cart Icon */}
           <button className="p-1.75 bg-gray-100  text-gray-400 hover:text-white hover:bg-teal-600 transition-colors rounded-full cursor-pointer">
             <svg className="size-4 md:size-5.5 ">
               <use href="./sprite.svg#shopping-cart"></use>
             </svg>
           </button>
+          {/* Change Icon */}
           <button>
             <svg className="size-4 md:size-6  text-gray-400 hover:text-teal-600 transition-colors ">
               <use href="./sprite.svg#arrows-right-left"></use>
             </svg>
           </button>
         </div>
+        {/* Stars Icon */}
         <div className="flex items-center">
           {Array.from({ length: 5 }).map((_, i) => (
             <button key={i} onClick={() => changeStar(i)}>
@@ -72,6 +88,9 @@ const ProductCart = () => {
       </div>
     </div>
   );
+  
+  // Stars Icon state Changer
+
   function changeStar(index) {
     const newStars = [...stars];
     newStars[index] = !newStars[index];
