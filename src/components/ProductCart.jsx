@@ -1,17 +1,15 @@
 import { useState } from "react";
 
-const ProductCart = () => {
+const ProductCart = ({Discount,count,Image,Title,Price}) => {
   const [stars, setStars] = useState([false, false, false, false, false]);
-  const discount = true;
-  const count = 1;
 
   return (
     <div className=" relative w-43 h-68.25 md:w-75 md:h-116.75 bg-white p-2 md:p-5 shadow-normal rounded-2xl">
       {/* Discount Label */}
-      {discount && (
+      {Discount && (
         <>
           <span className="inline-block text-center py-1 px-2.5 md:py-1.5 md:px-3.5 z-10 absolute top-2 right-2 md:top-6 md:right-6 text-white  bg-orange-300 w-10 h-5 md:w-13.5 md:h-7.5 rounded-full text-xs md:text-base font-Dana-DemiBold">
-            <span>12</span>%
+            <span>{Discount}</span>%
           </span>
         </>
       )}
@@ -19,16 +17,14 @@ const ProductCart = () => {
       <div className="flex justify-center items-center">
         <img
           className="size-32 md:size-65  mb-2 md:mb-5"
-          src="./img/products/p1.png"
+          src={Image}
           alt=""
         />
       </div>
       {/* title & price */}
       <div className=" space-y-1.5 md:space-y-2.5">
         {/* title */}
-        <h4 className=" font-Dana-Medium md:text-xl text-sm text-zinc-700 line-clamp-2 ">
-          قهوه ترک بن مانو مقدار 250 گرم خط دوم اسم طولانی
-        </h4>
+        <h4 className=" font-Dana-Medium md:text-xl text-sm text-zinc-700 line-clamp-2 ">{Title}</h4>
         {/* Price */}
         <div>
           {count === 0 ? (
@@ -38,14 +34,14 @@ const ProductCart = () => {
           ) : (
             <>
               <span className="font-Dana-DemiBold text-base md:text-xl text-teal-600">
-                175,000{" "}
+                {Price*(1-Discount/100)}
                 <span className="font-Dana-Regular text-xs md:text-sm">
                   تومان
                 </span>
               </span>
-              {discount && (
+              {Discount && (
                 <span className="font-Dana-Regular mr-2 md:mr-2.5 text-xs md:text-xl text-gray-400 line-through decoration-red-400 ">
-                  <span>175,000</span>
+                  <span>{Price}</span>
                   <span className="font-Dana-Regular text-sm hidden md:inline">
                     تومان
                   </span>
