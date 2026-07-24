@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { NavLink,useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const HeaderMobile = () => {
   const [activeSidebar, setActiveSidebar] = useState(null);
-  const [isOpen,setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
   const isShopActive = location.pathname.startsWith("/Shop");
   return (
     <>
+      {/*Navbar */}
       <div className="md:hidden flex justify-between items-center h-16 px-4 fixed right-0 left-0 bg-white">
         {/* Nav Menu button */}
         <button onClick={() => setActiveSidebar("nav")}>
@@ -28,6 +29,7 @@ const HeaderMobile = () => {
           </svg>
         </button>
       </div>
+
       {/* Nav Menu */}
       <div
         className={`w-64 min-h-screen fixed inset-y-0 right-0 px-4 pt-3 z-20 bg-white transition-all duration-300 ${activeSidebar === "nav" ? "translate-x-0" : "translate-x-full"}`}
@@ -44,40 +46,70 @@ const HeaderMobile = () => {
         {/* Menu */}
         <ul className="flex flex-col gap-y-4 font-Dana-Regular text-base text-zinc-700 ">
           <li>
-            <NavLink to="/Home" className={({isActive})=>`item ${isActive ? "active-item":""}`}>
+            <NavLink
+              to="/Home"
+              className={({ isActive }) =>
+                `item ${isActive ? "active-item" : ""}`
+              }
+            >
               <svg className="size-5">
                 <use href="./sprite.svg#home" />
               </svg>
               <span>صفحه اصلی</span>
             </NavLink>
           </li>
-          <li >
-            <div className={`item flex items-center justify-between ${isShopActive ? "active-item" : ""}`}>
-                <NavLink to="/Shop" className="flex gap-x-2">
+          <li>
+            <div
+              className={`item flex items-center justify-between ${isShopActive ? "active-item" : ""}`}
+            >
+              <NavLink to="/Shop" className="flex gap-x-2">
                 <svg className="size-5">
-                <use href="./sprite.svg#shopping-bag" />
-              </svg>
-              <span>فروشگاه</span>
-              
-            </NavLink>
-            <span className="cursor-pointer" onClick={()=>setIsOpen(prev=>!prev)}>
-                <svg className={`size-4 transition-transform duration-300 ${isOpen ? "rotate-180":""}`}>
-                    <use href="./sprite.svg#chevron-down"/>
+                  <use href="./sprite.svg#shopping-bag" />
                 </svg>
-            </span>
+                <span>فروشگاه</span>
+              </NavLink>
+              <span
+                className="cursor-pointer"
+                onClick={() => setIsOpen((prev) => !prev)}
+              >
+                <svg
+                  className={`size-4 transition-transform duration-300 ${isOpen ? "rotate-180" : ""}`}
+                >
+                  <use href="./sprite.svg#chevron-down" />
+                </svg>
+              </span>
             </div>
-            <div className={`max-h-0 overflow-hidden transition-all duration-300 ${isOpen ? "max-h-60":"" } flex flex-col gap-y-3 mt-1 px-9.5`}>
-              <NavLink to="#" className={({isActive})=>``}>قهوه ویژه</NavLink>
-              <NavLink to="#" className={({isActive})=>``}>ویژه در سطح جهانی</NavLink>
-              <NavLink to="#" className={({isActive})=>``}>قهوه درجه یک</NavLink>
-              <NavLink to="#" className={({isActive})=>``}>ترکیبات تجاری</NavLink>
-              <NavLink to="#" className={({isActive})=>``}>کپسول قهوه</NavLink>
-              <NavLink to="#" className={({isActive})=>``}>قهوه زینو برزیلی</NavLink>
+            {/* SubMenu */}
+            <div
+              className={`max-h-0 overflow-hidden transition-all duration-300 ${isOpen ? "max-h-60" : ""} flex flex-col gap-y-3 mt-1 px-9.5 text-sm`}
+            >
+              <NavLink to="#" className={({ isActive }) => ``}>
+                قهوه ویژه
+              </NavLink>
+              <NavLink to="#" className={({ isActive }) => ``}>
+                ویژه در سطح جهانی
+              </NavLink>
+              <NavLink to="#" className={({ isActive }) => ``}>
+                قهوه درجه یک
+              </NavLink>
+              <NavLink to="#" className={({ isActive }) => ``}>
+                ترکیبات تجاری
+              </NavLink>
+              <NavLink to="#" className={({ isActive }) => ``}>
+                کپسول قهوه
+              </NavLink>
+              <NavLink to="#" className={({ isActive }) => ``}>
+                قهوه زینو برزیلی
+              </NavLink>
             </div>
-            
           </li>
           <li>
-            <NavLink to="/Dictionary" className={({isActive})=>`item ${isActive ? "active-item":""}`}>
+            <NavLink
+              to="/Dictionary"
+              className={({ isActive }) =>
+                `item ${isActive ? "active-item" : ""}`
+              }
+            >
               <svg className="size-5">
                 <use href="./sprite.svg#chat" />
               </svg>
@@ -85,7 +117,12 @@ const HeaderMobile = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/About-Us" className={({isActive})=>`item ${isActive ? "active-item":""}`}>
+            <NavLink
+              to="/About-Us"
+              className={({ isActive }) =>
+                `item ${isActive ? "active-item" : ""}`
+              }
+            >
               <svg className="size-5">
                 <use href="./sprite.svg#briefcase" />
               </svg>
@@ -93,7 +130,12 @@ const HeaderMobile = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/Blog" className={({isActive})=>`item ${isActive ? "active-item":""}`}>
+            <NavLink
+              to="/Blog"
+              className={({ isActive }) =>
+                `item ${isActive ? "active-item" : ""}`
+              }
+            >
               <svg className="size-5">
                 <use href="./sprite.svg#document-text" />
               </svg>
@@ -101,7 +143,12 @@ const HeaderMobile = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/call" className={({isActive})=>`item ${isActive ? "active-item":""}`}>
+            <NavLink
+              to="/call"
+              className={({ isActive }) =>
+                `item ${isActive ? "active-item" : ""}`
+              }
+            >
               <svg className="size-5">
                 <use href="./sprite.svg#phone" />
               </svg>
@@ -109,11 +156,45 @@ const HeaderMobile = () => {
             </NavLink>
           </li>
         </ul>
+        {/* Buttons */}
+        <div className="border-t border-gray-100 pt-8 mt-6 px-2.5 space-y-6 text-orange-300 text-base font-Dana-Regular *:cursor-pointer">
+          {/* Login Button */}
+          <button className="flex items-center gap-x-2">
+            <svg className="size-5">
+              <use href="./sprite.svg#login"/>
+            </svg>
+            <span>ورود  |  ثبت‌نام</span>
+          </button>
+          {/* Dark/Light button */}
+          <button>
+            <div className="dark:hidden  flex items-center gap-x-2">
+              <svg className="size-5">
+                  <use href="./sprite.svg#moon" />
+                </svg>
+                <span>تم تیره</span>
+            </div>
+            <div className="hidden dark:flex items-center gap-x-2">
+              <svg className="size-5 ">
+                  <use href="./sprite.svg#sun" />
+                </svg>
+                <span>تم روشن</span>
+            </div>
+          </button>
+          {/* Shopping button */}
+          <button className="flex items-center gap-x-2">
+            <svg className="size-5">
+              <use href="./sprite.svg#shopping-cart"/>
+            </svg>
+            <span>سبد خرید</span>
+          </button>
+        </div>
       </div>
+
       {/* Shopping */}
       <div
         className={`w-64 min-h-screen fixed inset-y-0 left-0 z-20 bg-white transition-all duration-300 ${activeSidebar === "cart" ? "translate-x-0" : "-translate-x-full"}`}
       ></div>
+      
       {/* OverLay */}
       <div
         onClick={() => setActiveSidebar(null)}

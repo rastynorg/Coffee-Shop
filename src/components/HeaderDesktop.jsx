@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 
-const HeaderDesktop = () => {
+const HeaderDesktop = ({SetDark}) => {
   return (
     <header>
       {/* Header Nav  */}
-      <div className="fixed top-9 right-0 left-0 w-[90%] h-24 rounded-3xl bg-black/50 mx-auto backdrop-blur-md py-5 px-10">
+      <div className="hidden md:block fixed top-9 right-0 left-0 w-[90%] h-24 rounded-3xl bg-black/50 mx-auto backdrop-blur-md py-5 px-10">
         <div className="w-full flex justify-between items-center font-Dana-Regular">
           {/* Logo & Menu */}
           <div className="flex items-center gap-x-9 h-14 ">
@@ -88,14 +88,14 @@ const HeaderDesktop = () => {
                 </div>
               </div>
               {/* dark/light Button */}
-              <div>
+              <button onClick={()=>{SetDark(prev=>!prev)}}>
                 <svg className="size-8 dark:hidden cursor-pointer">
                   <use href="./sprite.svg#moon" />
                 </svg>
                 <svg className="size-8 hidden dark:block cursor-pointer">
                   <use href="./sprite.svg#sun" />
                 </svg>
-              </div>
+              </button>
             </div>
             {/*Divider*/}
             <div className="h-14 w-px bg-white/10"></div>
