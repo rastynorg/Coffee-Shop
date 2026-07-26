@@ -9,7 +9,7 @@ const HeaderMobile = () => {
   return (
     <>
       {/*Navbar */}
-      <div className="md:hidden flex justify-between items-center h-16 px-4 fixed right-0 left-0 bg-white">
+      <div className="md:hidden flex justify-between items-center h-16 px-4 fixed right-0 left-0 top-0 bg-white">
         {/* Nav Menu button */}
         <button onClick={() => setActiveSidebar("nav")}>
           <svg className="size-6">
@@ -198,7 +198,7 @@ const HeaderMobile = () => {
       {/* OverLay */}
       <div
         onClick={() => setActiveSidebar(null)}
-        className={`overlay bg-black/40 w-full h-screen z-10 backdrop-blur-xs transition-all duration-300 ${activeSidebar ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
+        className={`md:hidden fixed inset-0 overlay bg-black/40 w-full h-screen z-10 backdrop-blur-xs transition-all duration-300 ${activeSidebar ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
       ></div>
     </>
   );

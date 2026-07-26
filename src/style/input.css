@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @font-face {
     font-family: "Dana-DemiBold";
     src: url(../fonts/Dana/woff2/DanaFaNum-DemiBold.woff2);
@@ -43,10 +45,13 @@
     --font-Morraba-Light: "Morraba-Light";
     --font-Morraba-Medium: "Morraba-Medium";
 
+
+    --breakpoint-xs:25rem;
+
 }
 
 @utility container{
-    @apply mx-auto
+    @apply mx-auto max-w-7xl px-4 md:px-0
 }
 @layer components{
     .item{
@@ -66,11 +71,54 @@
     transition: all;
 }
 
+
+
 }
 
-#main{
-    background-image: url(../../public/img/headerBgDesktop.webp);
+.circle-main{
+    @apply absolute mx-auto left-0 right-0 bottom-0 translate-y-[50%]
+}
+.circle{
+    @apply hidden md:flex justify-center items-center rounded-full
+}
+.circle-lg{
+  width: 203px;
+  height:203px ;
+  @apply border border-white/25 
+}
+.circle-md{
+    width:145px;
+    height:145px ;
+    @apply border border-white/50
+
+}
+.circle-sm{
+    width: 95px; 
+    height:95px ;
+    @apply border border-white/80
+
+}
+body{
+    @apply dark:bg-zinc-800
+}
+
+
+#poster{
+    background-image:url(../../public/img/headerBgDesktop.webp);
     background-repeat: no-repeat;
+    background-position: center top;
     background-size: cover;
 }
+@media(max-width:768px){
+    #poster{
+        background-image:url(../../public/img/headerBgMobile.webp);
+        background-size: cover;
+        margin-top: 64px;
+        
+        
+        
+    }
+    
+}
+
 

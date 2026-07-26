@@ -1,8 +1,9 @@
-import {  useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import BlogCart from "./components/BlogCart";
 import HeaderDesktop from "./components/HeaderDesktop";
 import HeaderMobile from "./components/HeaderMobile";
 import ProductCart from "./components/ProductCart";
+import Home from "./components/Home";
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(() => {
@@ -10,10 +11,9 @@ const App = () => {
   });
 
   useEffect(() => {
-  console.log("darkMode:", darkMode);
-  console.log(document.documentElement.className);
-}, [darkMode]);
-
+    console.log("darkMode:", darkMode);
+    console.log(document.documentElement.className);
+  }, [darkMode]);
 
   useEffect(() => {
     if (darkMode) {
@@ -27,10 +27,11 @@ const App = () => {
 
   return (
     <>
-      <header id="main" className="min-h-screen mw-480 ]">
-        <HeaderDesktop SetDark={setDarkMode} />
-        <HeaderMobile SetDark={setDarkMode}/>
-      </header>
+      <HeaderDesktop SetDark={setDarkMode} />
+      <HeaderMobile SetDark={setDarkMode} />
+      <Home/>
+
+     
     </>
   );
 };
