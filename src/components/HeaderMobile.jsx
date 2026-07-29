@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 
-const HeaderMobile = () => {
+const HeaderMobile = ({SetDark}) => {
   const [activeSidebar, setActiveSidebar] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
@@ -9,7 +9,7 @@ const HeaderMobile = () => {
   return (
     <>
       {/*Navbar */}
-      <div className="md:hidden flex justify-between items-center h-16 px-4 fixed right-0 left-0 top-0 bg-white">
+      <div className="md:hidden flex justify-between items-center h-16 px-4 fixed right-0 left-0 top-0 bg-white z-20 shadow-normal">
         {/* Nav Menu button */}
         <button onClick={() => setActiveSidebar("nav")}>
           <svg className="size-6">
@@ -166,7 +166,7 @@ const HeaderMobile = () => {
             <span>ورود  |  ثبت‌نام</span>
           </button>
           {/* Dark/Light button */}
-          <button>
+          <button onClick={()=>{SetDark(prev=>!prev)}}>
             <div className="dark:hidden  flex items-center gap-x-2">
               <svg className="size-5">
                   <use href="./sprite.svg#moon" />

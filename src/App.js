@@ -4,16 +4,15 @@ import HeaderDesktop from "./components/HeaderDesktop";
 import HeaderMobile from "./components/HeaderMobile";
 import ProductCart from "./components/ProductCart";
 import Home from "./components/Home";
+import ProductProvider from "./components/ProductProvider";
+import "swiper/css";
+import BlogProvider from "./components/BlogProvider";
+
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("theme") === "dark";
   });
-
-  useEffect(() => {
-    console.log("darkMode:", darkMode);
-    console.log(document.documentElement.className);
-  }, [darkMode]);
 
   useEffect(() => {
     if (darkMode) {
@@ -29,7 +28,14 @@ const App = () => {
     <>
       <HeaderDesktop SetDark={setDarkMode} />
       <HeaderMobile SetDark={setDarkMode} />
-      <Home/>
+      <BlogProvider>
+        <ProductProvider>
+        <Home/>
+      </ProductProvider>
+      </BlogProvider>
+      
+      
+      
 
      
     </>
