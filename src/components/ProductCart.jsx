@@ -1,12 +1,12 @@
-import { useContext, useState } from "react";
-import ProductContext from "./contexts/productContext";
+
+import { useUpdateProductRating } from "../hooks/products/useUpdateProductRating";
 
 const ProductCart = ({ Discount, count, Image, Title, Price,Id,Rating }) => {
 
   const price = parseInt(Price.replace(/,/g, ""), 10);
   const finalPrice = price * (1 - Discount / 100);
 
-  const {updateRating}=useContext(ProductContext)
+  const {mutate:updateRating}=useUpdateProductRating()
 
   return (
     <div className=" relative w-43 h-68.25 md:w-75 md:h-116.75 bg-white p-2 md:p-5 shadow-normal rounded-2xl">
@@ -73,7 +73,7 @@ const ProductCart = ({ Discount, count, Image, Title, Price,Id,Rating }) => {
         {/* Stars Icon */}
         <div className="flex items-center" style={{direction:"ltr"}}>
           {Array.from({ length: 5 }).map((_, i) => (
-            <button key={i} className="cursor-pointer" onClick={() => updateRating(Id, i + 1)}>
+            <button key={i} className="cursor-pointer" onClick={() => updateRating({id:Id,newRating:i+1})}>
               <svg
                 className={`size-5 ${
                   i < Rating ? "text-yellow-400" : "text-gray-300"

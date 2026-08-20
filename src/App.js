@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
-import BlogCart from "./components/BlogCart";
+
 import HeaderDesktop from "./components/HeaderDesktop";
 import HeaderMobile from "./components/HeaderMobile";
-import ProductCart from "./components/ProductCart";
-import Home from "./components/Home";
-import ProductProvider from "./components/ProductProvider";
+
+import Home from "./pages/Home/Home";
 import "swiper/css";
-import BlogProvider from "./components/BlogProvider";
+
+
+
+
 
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(() => {
     return localStorage.getItem("theme") === "dark";
   });
+  
 
   useEffect(() => {
     if (darkMode) {
@@ -24,15 +27,19 @@ const App = () => {
     }
   }, [darkMode]);
 
+   
+
   return (
     <>
       <HeaderDesktop SetDark={setDarkMode} />
       <HeaderMobile SetDark={setDarkMode} />
-      <BlogProvider>
-        <ProductProvider>
-        <Home/>
-      </ProductProvider>
-      </BlogProvider>
+      <Home/>
+
+     
+      
+      
+      
+      
       
       
       

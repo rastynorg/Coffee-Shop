@@ -1,16 +1,27 @@
-import { useContext, useEffect } from "react";
-import ProductContext from "./contexts/productContext";
-import ProductCart from "./ProductCart";
-import CategoryCart from "./CategoryCart";
 
-import ProductCarousel from "./ProductCarousel";
-import BlogContext from "./contexts/blogContext";
-import BlogCart from "./BlogCart";
+import ProductCart from "../../components/ProductCart";
+import CategoryCart from "../../components/CategoryCart";
+import ProductCarousel from "../../components/ProductCarousel";
+import BlogCart from "../../components/BlogCart";
+import Footer from "../../components/Footer";
+import { useProducts } from "../../hooks/products/useProducts";
+import { useBlogs } from "../../hooks/blogs/useBlogs";
+import ProductCartSkeleton from "../../components/loadingComponent/ProductCartSkeleton";
+import BlogCartSkeleton from "../../components/loadingComponent/BlogCartSkeleton";
+import NetworkError from "../../components/errorComponent/NetworkError";
 
 const Home = () => {
-  const { products, newProducts, bestSellerProducts } =
-    useContext(ProductContext);
-  const { blogs } = useContext(BlogContext);
+  const {data:products=[],isLoading:productsloading,error:productsError,isError:productsIsError}=useProducts()
+  const { data:blogs=[],isLoading:blogsLoading,error:blogsError,isError:blogsIsError} = useBlogs()
+
+  //const isError=productsIsError || blogsIsError
+  //const error=productsError || blogsError
+  //isError && error.message.toLowerCase() === "network error" && (<NetworkError/>)
+  
+   const newProducts=products.filter(product=>product.Newest===true)
+  const bestSellerProducts=products.filter(product=>product.BestSeller===true)
+     
+  
 
   return (
     <>
@@ -75,19 +86,28 @@ const Home = () => {
             </div>
           </div>
           <div className="mt-1.5 md:mt-28 grid grid-cols-2 md:grid-cols-4 gap-3.5 md:gap-5">
-            {newProducts.map((product) => (
-              <ProductCart
-                key={product.id}
-                Discount={product.Discount}
-                count={product.count}
-                Image={product.Image}
-                Title={product.Title}
-                Price={product.Price}
-                Id={product.id}
-                Rating={product.Rating}
-              />
-            ))}
+            
+{productsloading === true ? (
+  Array.from({ length: 8 }).map((_, index) => (
+    <ProductCartSkeleton key={index} />
+  ))
+) : (
+  newProducts.slice(0, 8).map((product) => (
+    <ProductCart
+      key={product.id}
+      Discount={product.Discount}
+      count={product.count}
+      Image={product.Image}
+      Title={product.Title}
+      Price={product.Price}
+      Id={product.id}
+      Rating={product.Rating}
+    />
+  ))
+)}
+            
           </div>
+          
         </div>
         {/* Categories */}
         <div className="container mt-8 md:mt-20">
@@ -237,14 +257,21 @@ const Home = () => {
               </svg>
             </div>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3.5 md:gap-5">
-            {blogs.map((blog) => (
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-3.5 md:gap-5">
+            {blogsLoading === true ? (
+  Array.from({ length: 4 }).map((_, index) => (
+    <BlogCartSkeleton key={index} />
+  ))
+) : (
+  blogs.slice(0,4).map((blog) => (
               <BlogCart
                 Image={blog.Image}
                 Title={blog.Title}
                 Date={blog.Date}
               />
-            ))}
+            ))
+)}
+            
           </div>
         </div>
         <div className="container">
@@ -279,7 +306,7 @@ const Home = () => {
               </button>
             </div>
           </div>
-          <div className="w-full grid grid-cols-2 md:grid-cols-4">
+          <div className="w-full grid grid-cols-2 md:grid-cols-4 mb-12 md:mb-36 ">
             <div className="flex flex-col md:flex-row items-center gap-y-5 md:gap-x-4 border-b border-l border-gray-200 md:border-0 pb-5 md:pb-0">
               <img src="./img/svgs/services/support.svg" alt="" />
               <div className="text-zinc-700 space-y-1 md:space-y-3.5 max-md:text-center">
@@ -311,6 +338,8 @@ const Home = () => {
 
           </div>
         </div>
+        <Footer />
+      
       </div>
     </>
   );
